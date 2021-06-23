@@ -18,6 +18,8 @@
 // nonatomic (in most cases it will use nonatomic) and
 // strong ("data don't go away") means how compiler generates
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
 
 @end
 
@@ -33,12 +35,24 @@
     
     // Do any additional setup after loading the view.
     // set up
+    [self fetchMovies];
+    
+    //init an instance
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    //addTarget, the object u wanna call; action, functions u wanna call
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self.tableView addSubview:self.refreshControl]; //addSubview is a part of UIView, can be added anywhere
+}
+
+- (void)fetchMovies{
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        //once network calls
+        //once network request comes back
            if (error != nil) {
                //if there's an error
                NSLog(@"%@", [error localizedDescription]);
@@ -59,12 +73,11 @@
                //call your data source again bc the underlying data may have changed
                [self.tableView reloadData];
                
-               // TODO: Get the array of movies
-               // TODO: Store the movies in a property to use elsewhere
-               // TODO: Reload your table view data
            }
+            [self.refreshControl endRefreshing];
        }];
     [task resume];
+
 }
 
 - (void) didReceiveMemoryWarning{
