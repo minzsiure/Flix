@@ -7,6 +7,7 @@
 
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DetailsViewController ()
 
@@ -14,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end
 
@@ -31,6 +33,11 @@
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     [self.posterView setImageWithURL:posterURL];
     
+    [self.posterView.layer setBorderColor: [[UIColor blackColor] CGColor]];
+    [self.posterView.layer setBorderWidth:3.0];
+    //self.posterView.layer.borderColor = UIColor.white.cgColor;
+    
+    
     NSString *backdropURLString = self.movie[@"backdrop_path"];
     NSString *fullBackdropURLString = [baseURLString stringByAppendingString:backdropURLString];
     
@@ -40,9 +47,11 @@
     
     self.titleLabel.text = self.movie[@"title"];
     self.synopsisLabel.text = self.movie[@"overview"];
+    self.dateLabel.text = self.movie[@"release_date"];
     
     [self.titleLabel sizeToFit];
     [self.synopsisLabel sizeToFit];
+    [self.dateLabel sizeToFit];
 }
 
 /*
