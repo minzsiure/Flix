@@ -6,6 +6,7 @@
 //
 
 #import "MoviesViewController.h"
+#import "MovieCell.h"
 
 // this class implements this protocal, meaning i wil implement methods defined in <___>
 @interface MoviesViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -81,10 +82,13 @@
     //UITableViewCell *cell = [[UITableViewCell alloc] init];
     
     // call reuseable cells
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
     // make right movie associates with right row
     NSDictionary *movie = self.movies[indexPath.row];
+    cell.titleLabel.text = movie[@"title"];
+    cell.synopsisLabel.text = movie[@"overview"];
+    
     
     // cell.textLabel.text = [NSString stringWithFormat:@"row: %d, section %d", indexPath.row, indexPath.section];
     // cell.textLabel.text = movie[@"title"];

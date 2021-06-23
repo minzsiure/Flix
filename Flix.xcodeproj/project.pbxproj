@@ -16,6 +16,7 @@
 		8A4B855426839048006F9F4D /* FlixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4B855326839048006F9F4D /* FlixTests.m */; };
 		8A4B855F26839048006F9F4D /* FlixUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4B855E26839048006F9F4D /* FlixUITests.m */; };
 		8A4B857A2683A12A006F9F4D /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4B85792683A12A006F9F4D /* MoviesViewController.m */; };
+		8A4B85802683CC48006F9F4D /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4B857F2683CC48006F9F4D /* MovieCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		8A4B856026839048006F9F4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A4B85782683A12A006F9F4D /* MoviesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
 		8A4B85792683A12A006F9F4D /* MoviesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
+		8A4B857E2683CC48006F9F4D /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
+		8A4B857F2683CC48006F9F4D /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,9 @@
 		8A4B853626839047006F9F4D /* Flix */ = {
 			isa = PBXGroup;
 			children = (
+				8A4B857D2683C9D0006F9F4D /* Models */,
+				8A4B857C2683C9BF006F9F4D /* Views */,
+				8A4B857B2683C996006F9F4D /* New Group */,
 				8A4B85752683A0DA006F9F4D /* View Controllers */,
 				8A4B853726839047006F9F4D /* AppDelegate.h */,
 				8A4B853826839047006F9F4D /* AppDelegate.m */,
@@ -143,6 +149,29 @@
 				8A4B85792683A12A006F9F4D /* MoviesViewController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8A4B857B2683C996006F9F4D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		8A4B857C2683C9BF006F9F4D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8A4B857E2683CC48006F9F4D /* MovieCell.h */,
+				8A4B857F2683CC48006F9F4D /* MovieCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8A4B857D2683C9D0006F9F4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A4B853926839047006F9F4D /* AppDelegate.m in Sources */,
+				8A4B85802683CC48006F9F4D /* MovieCell.m in Sources */,
 				8A4B854A26839048006F9F4D /* main.m in Sources */,
 				8A4B853C26839047006F9F4D /* SceneDelegate.m in Sources */,
 				8A4B857A2683A12A006F9F4D /* MoviesViewController.m in Sources */,
