@@ -7,7 +7,10 @@
 
 #import "MoviesViewController.h"
 
-@interface MoviesViewController ()
+// this class implements this protocal, meaning i wil implement methods defined in <___>
+@interface MoviesViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 // create a property. it does both setter and getter in java
 // nonatomic (in most cases it will use nonatomic) and
@@ -21,6 +24,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // tableView will call dataSource or delegate, expecting self to know stuff
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
     // Do any additional setup after loading the view.
     // set up
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
@@ -46,6 +54,8 @@
                for (NSDictionary *movie in self.movies){
                    NSLog(@"%@", movie[@"title"]);
                }
+               //call your data source again bc the underlying data may have changed
+               [self.tableView reloadData];
                
                // TODO: Get the array of movies
                // TODO: Store the movies in a property to use elsewhere
@@ -57,6 +67,29 @@
 
 - (void) didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.movies.count; //20 cells
+}
+
+// it is a UITableView set up
+// datasourse <> tableView, loading as scrolling; as soon as scrolling down, the data gets removed, will load again if scroll back.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //create an UITableViewCell instance
+    //UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+    // call reuseable cells
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    
+    // make right movie associates with right row
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    // cell.textLabel.text = [NSString stringWithFormat:@"row: %d, section %d", indexPath.row, indexPath.section];
+    // cell.textLabel.text = movie[@"title"];
+    
+    return cell;
 }
 
 /*
