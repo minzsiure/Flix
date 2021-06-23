@@ -7,6 +7,7 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "UIImageView+AFNetworking.h"
 
 // this class implements this protocal, meaning i wil implement methods defined in <___>
 @interface MoviesViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -89,6 +90,15 @@
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
     
+    //cocopod set up
+    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
+    NSString *posterURLString = movie[@"poster_path"];
+    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
+    
+    //NSURL is similar to string, but it checks if input is a valid URL
+    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
+    
+    [cell.posterView setImageWithURL:posterURL];
     
     // cell.textLabel.text = [NSString stringWithFormat:@"row: %d, section %d", indexPath.row, indexPath.section];
     // cell.textLabel.text = movie[@"title"];
