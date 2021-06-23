@@ -8,6 +8,7 @@
 #import "MoviesViewController.h"
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "DetailsViewController.h"
 
 // this class implements this protocal, meaning i wil implement methods defined in <___>
 @interface MoviesViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -119,14 +120,22 @@
     return cell;
 }
 
-/*
+//a lifecycle method
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row]; //grab the movie
+    
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    
+    detailsViewController.movie = movie;
+    //NSLog(@"tapping on a movie");
 }
-*/
+
 
 @end
