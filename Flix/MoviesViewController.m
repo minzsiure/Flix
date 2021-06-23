@@ -14,6 +14,7 @@
 @interface MoviesViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 // create a property. it does both setter and getter in java
 // nonatomic (in most cases it will use nonatomic) and
@@ -27,8 +28,10 @@
 @implementation MoviesViewController
 // property can be override here
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.activityIndicator startAnimating];
     
     // tableView will call dataSource or delegate, expecting self to know stuff
     self.tableView.dataSource = self;
@@ -47,7 +50,44 @@
     [self.tableView addSubview:self.refreshControl]; //addSubview is a part of UIView, can be added anywhere
 }
 
+- (void)networkError{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
+
+    // create a cancel action
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle cancel response here. Doing nothing will dismiss the view.
+                                                      }];
+    // add the cancel action to the alertController
+    [alert addAction:cancelAction];
+
+    // create an TryAgain action
+    UIAlertAction *TryAgainAction = [UIAlertAction actionWithTitle:@"Try Again"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle response here.
+        //Call on network again
+        [self fetchMovies];
+        
+                                                     }];
+    // add the TryAgain action to the alert controller
+    [alert addAction:TryAgainAction];
+
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
+
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert
+//                                                                                 animated:YES
+//                                                                               completion:^{
+//                                                                                       // optional code for what happens after the alert controller has finished presenting
+//                                                                               }];
+
+}
+
 - (void)fetchMovies{
+    
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -56,6 +96,8 @@
         //once network request comes back
            if (error != nil) {
                //if there's an error
+               [self networkError];
+//               [self networkError];
                NSLog(@"%@", [error localizedDescription]);
            }
            else {
@@ -120,6 +162,7 @@
     return cell;
 }
 
+
 //a lifecycle method
 #pragma mark - Navigation
 
@@ -136,6 +179,7 @@
     detailsViewController.movie = movie;
     //NSLog(@"tapping on a movie");
 }
+
 
 
 @end
