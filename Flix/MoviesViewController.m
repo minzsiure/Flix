@@ -78,12 +78,6 @@
         // optional code for what happens after the alert controller has finished presenting
     }];
 
-//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert
-//                                                                                 animated:YES
-//                                                                               completion:^{
-//                                                                                       // optional code for what happens after the alert controller has finished presenting
-//                                                                               }];
-
 }
 
 - (void)fetchMovies{
@@ -153,7 +147,7 @@
     
     //NSURL is similar to string, but it checks if input is a valid URL
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-    
+    cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
     
     // cell.textLabel.text = [NSString stringWithFormat:@"row: %d, section %d", indexPath.row, indexPath.section];
