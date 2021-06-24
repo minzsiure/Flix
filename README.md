@@ -16,7 +16,7 @@ The following **required** functionality is complete:
 - [ ] User sees an error message when there's a networking error.
 - [ ] User can tap a tab bar button to view a grid layout of Movie Posters using a CollectionView.
 
-The following **optional** features are implemented:
+The following **optional** features might be implemented:
 
 - [ ] User can tap a poster in the collection view to see a detail screen of that movie
 - [ ] User can search for a movie.
@@ -58,7 +58,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2021] [Eva Yi Xie]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
