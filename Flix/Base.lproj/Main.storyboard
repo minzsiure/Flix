@@ -169,7 +169,7 @@
         <scene sceneID="eo8-bz-J6O">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xH4-wc-Y0b" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Now Playing" id="t56-E9-Gc1"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="now_playing_tabbar_item" id="t56-E9-Gc1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DpP-Xj-YzC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -184,11 +184,11 @@
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="110.49107142857143"/>
         </scene>
-        <!--Item-->
+        <!--Gallery-->
         <scene sceneID="LWE-tV-t4v">
             <objects>
                 <navigationController id="bSU-rF-i6s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4fk-HR-mnP"/>
+                    <tabBarItem key="tabBarItem" title="Gallery" image="projector_tabbar_item" id="4fk-HR-mnP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VEy-rw-QX9">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -201,7 +201,7 @@
             </objects>
             <point key="canvasLocation" x="1855" y="110"/>
         </scene>
-        <!--Movies Grid View Controller-->
+        <!--Posters-->
         <scene sceneID="OY0-J6-JUb">
             <objects>
                 <viewController id="yR2-HS-bPl" customClass="MoviesGridViewController" sceneMemberID="viewController">
@@ -244,7 +244,7 @@
                         <viewLayoutGuide key="safeArea" id="HaU-vH-G3B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qZ6-7A-SV3"/>
+                    <navigationItem key="navigationItem" title="Posters" id="qZ6-7A-SV3"/>
                     <connections>
                         <outlet property="collectionView" destination="vTM-9A-xtd" id="5BM-rV-da5"/>
                     </connections>
@@ -255,6 +255,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="now_playing_tabbar_item" width="21" height="21"/>
+        <image name="projector_tabbar_item" width="21" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
