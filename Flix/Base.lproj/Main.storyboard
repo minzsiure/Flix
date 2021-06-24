@@ -101,6 +101,7 @@
         <!--Details View Controller-->
         <scene sceneID="U1M-Yn-pWm">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UY6-oL-i8V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="CHS-FL-HKa" customClass="DetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ing-DH-LVl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -161,7 +162,6 @@
                         <outlet property="titleLabel" destination="7S7-q6-YOc" id="9Cn-3F-kdz"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UY6-oL-i8V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135" y="1749"/>
         </scene>
@@ -236,6 +236,7 @@
                                         <size key="customSize" width="183" height="243"/>
                                         <connections>
                                             <outlet property="posterView" destination="0aW-2N-uDY" id="NNT-Gz-2To"/>
+                                            <segue destination="s9u-pC-lXV" kind="show" identifier="gridSegue" id="BCO-zh-a0h"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -252,6 +253,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVM-Yg-TBd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1853.6231884057972" y="829.6875"/>
+        </scene>
+        <!--Grid View Controller-->
+        <scene sceneID="oPd-2E-R0a">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YWq-st-Hkf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="s9u-pC-lXV" customClass="GridViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Mp-tV-KN4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YL-k1-NxS">
+                                <rect key="frame" x="0.0" y="33" width="414" height="863"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdG-iH-AmH">
+                                        <rect key="frame" x="0.0" y="-62" width="414" height="281"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eWr-k3-Sr4">
+                                        <rect key="frame" x="16" y="143" width="132" height="193"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elg-Lk-sLd">
+                                        <rect key="frame" x="163" y="234" width="249" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htm-WQ-BEm">
+                                        <rect key="frame" x="20" y="348" width="375" height="105"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Release date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LC-i1-LrK">
+                                        <rect key="frame" x="165" y="276" width="249" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                </subviews>
+                                <viewLayoutGuide key="contentLayoutGuide" id="4ot-PF-WOy"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="c2t-FX-HTh"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mlI-9P-USr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ICd-Z2-F15"/>
+                    <connections>
+                        <outlet property="gridBackDropView" destination="mdG-iH-AmH" id="dHB-8t-nMm"/>
+                        <outlet property="gridDateLabel" destination="5LC-i1-LrK" id="VC7-YU-k0W"/>
+                        <outlet property="gridPosterView" destination="eWr-k3-Sr4" id="vHc-M0-agf"/>
+                        <outlet property="gridSynoposisLabel" destination="Htm-WQ-BEm" id="SPd-Pn-Otg"/>
+                        <outlet property="gridTitleLabel" destination="elg-Lk-sLd" id="NiR-Yp-QOC"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1854" y="1748"/>
         </scene>
     </scenes>
     <resources>
