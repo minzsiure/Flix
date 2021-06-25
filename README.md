@@ -20,7 +20,6 @@ The following **optional** features might be implemented:
 
 - [ ] User can tap a poster in the collection view to see a detail screen of that movie
 - [ ] User can search for a movie.
-- [ ] User can play movie trailer on the detail screen.
 - [ ] Customize the selection effect of the cell.
 
 - [ ] All images fade in as they are loading.
@@ -31,12 +30,8 @@ The following **optional** features might be implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [ ] User can play movie trailer on the detail screen.
 
-Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
-
-1.
-2.
 
 ## Video Walkthrough
 
