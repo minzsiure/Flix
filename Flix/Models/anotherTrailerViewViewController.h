@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface anotherTrailerViewViewController : UIViewController
-@property(strong, nonatomic) NSString *movieID;
+@property(strong, nonatomic) NSNumber *movieID;
 
 @end
 

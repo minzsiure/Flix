@@ -18,20 +18,72 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // As a property or local variable
-    NSString *urlString = @"https://www.dropbox.com/terms?mobile=1";
-    
-    // Convert the url String to a NSURL object.
-    NSURL *url = [NSURL URLWithString:urlString];
+    //URL
+     //first part of string
+     NSString *idString = [NSString stringWithFormat:@"%@", self.movieID ];
+     NSLog(@"%@", idString);
+     NSString *url_1 = @"https://api.themoviedb.org/3/movie/";
+     NSString *url_3 = @"/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+     NSString *APIURLString = [url_1 stringByAppendingString:idString];
+     
+     
+     
+     NSString *FullAPIURLString = [APIURLString stringByAppendingString:url_3];
+     NSLog(@"%@", FullAPIURLString);
+     
+     //NSURL is similar to string, but it checks if input is a valid URL
+     NSURL *APIURL = [NSURL URLWithString:FullAPIURLString];
+     //Request
+     NSURLRequest *request = [NSURLRequest requestWithURL:APIURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
 
-    // Place the URL in a URL Request.
-    NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                         timeoutInterval:10.0];
-    // Load Request into WebView.
-    [self.anotherWebView loadRequest:request];
+     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+         //once network request comes back
+            if (error != nil) {
+                //if there's an error
+                NSLog(@"%@", [error localizedDescription]);
+            }
+            else {
+                //else gets to API
+                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                //NSLog(@"%@", dataDictionary); // every api call gives a dataDic
+                
+                //gives a key (ie. results) to access the dictionary
+                // this creates an NSArray named movies
+                NSString *videoKey = dataDictionary[@"results"][1][@"key"];
+                NSLog(@"key, %@", videoKey);
+                
+                //call your data source again bc the underlying data may have changed
+                //[self.trailerWebView reloadData];
+                NSString *baseString = @"https://www.youtube.com/watch?v=";
+                NSLog(@"videoKey, %@", videoKey);
+                
+                NSString *comboString = [baseString stringByAppendingString:videoKey];
+                NSLog(@"%@", comboString);
+                // Convert the url String to a NSURL object.
+                NSURL *videoURL = [NSURL URLWithString:comboString];
+
+
+                // Place the URL in a URL Request.
+                NSURLRequest *request = [NSURLRequest requestWithURL:videoURL
+                                                         cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                     timeoutInterval:10.0];
+                // Load Request into WebView.
+                [self.anotherWebView loadRequest:request];
+                
+            }
+             //[self.refreshControl endRefreshing];
+        }];
+    [task resume];
+
+
+    
+    
+
+}
     
     // Do any additional setup after loading the view.
-}
+
 
 /*
 #pragma mark - Navigation

@@ -7,6 +7,7 @@
 
 #import "GridViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "anotherTrailerViewViewController.h"
 
 @interface GridViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *gridBackDropView;
@@ -50,19 +51,16 @@
 }
 
 
-//#pragma mark - Navigation
+#pragma mark - Navigation
 
-//// In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    // Get the new view controller using [segue destinationViewController].
-//    // Pass the selected object to the new view controller.
-//    UITableViewCell *tappedCell = sender;
-//    NSIndexPath indexPath = [self.tableView indexPathForCell];
-//    NSDictionary *movie = self.movies[indexPath.row];
-//
-//    GridViewController *gridViewController = [segue destinationViewController]
-//    NSLog(@"hey");
-//}
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    NSNumber *movieID = self.movie[@"id"];
+    anotherTrailerViewViewController *trailerViewController = [segue destinationViewController];
+    trailerViewController.movieID = movieID;
+}
 
 
 @end
