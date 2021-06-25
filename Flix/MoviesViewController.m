@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 
-
 // create a property. it does both setter and getter in java
 // nonatomic (in most cases it will use nonatomic) and
 // strong ("data don't go away") means how compiler generates
@@ -27,6 +26,7 @@
 @property (strong, nonatomic) NSArray *filteredMovies;
 @property (strong, nonatomic) NSArray *movieTitles;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+
 
 
 @end
@@ -110,14 +110,6 @@
                //gives a key (ie. results) to access the dictionary
                // this creates an NSArray named movies
                self.movies = dataDictionary[@"results"];
-               
-               // iterate through each movie in movies and print out "titles"
-               NSMutableArray *movieTitles = [NSMutableArray array];
-               for (NSDictionary *movie in self.movies){
-                   [movieTitles addObject:movie[@"title"]];
-                   //NSLog(@"%@", movie[@"title"]);
-                   //NSLog(@"movie %@", movie);
-               }
                self.filteredMovies = self.movies;
                
                //call your data source again bc the underlying data may have changed
@@ -152,6 +144,12 @@
     NSDictionary *movie = self.filteredMovies[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
+
+    double voteDouble = [(NSNumber *)  movie[@"vote_average"] doubleValue];
+    NSString *voteString = [NSString stringWithFormat:@" %0.1f ",voteDouble];
+    NSString *star = @"★";
+    NSString *rating = [voteString stringByAppendingString:star];
+    cell.ratingLabel.text = rating;
     
     //cocopod set up
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
