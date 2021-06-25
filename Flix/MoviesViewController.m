@@ -11,15 +11,19 @@
 #import "DetailsViewController.h"
 
 // this class implements this protocal, meaning i wil implement methods defined in <___>
-@interface MoviesViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface MoviesViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 // create a property. it does both setter and getter in java
 // nonatomic (in most cases it will use nonatomic) and
 // strong ("data don't go away") means how compiler generates
 @property (nonatomic, strong) NSArray *movies;
+@property (strong, nonatomic) NSArray *filteredMovies;
+@property (strong, nonatomic) NSArray *movieTitles;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 
@@ -36,10 +40,12 @@
     // tableView will call dataSource or delegate, expecting self to know stuff
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.searchBar.delegate = self;
     
     // Do any additional setup after loading the view.
     // set up
     [self fetchMovies];
+    
     
     //init an instance
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -97,16 +103,21 @@
            else {
                //else gets to API
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSLog(@"%@", dataDictionary); // every api call gives a dataDic
+               //NSLog(@"%@", dataDictionary); // every api call gives a dataDic
                
                //gives a key (ie. results) to access the dictionary
                // this creates an NSArray named movies
                self.movies = dataDictionary[@"results"];
                
                // iterate through each movie in movies and print out "titles"
+               NSMutableArray *movieTitles = [NSMutableArray array];
                for (NSDictionary *movie in self.movies){
-                   NSLog(@"%@", movie[@"title"]);
+                   [movieTitles addObject:movie[@"title"]];
+                   //NSLog(@"%@", movie[@"title"]);
+                   //NSLog(@"movie %@", movie);
                }
+               self.filteredMovies = self.movies;
+               
                //call your data source again bc the underlying data may have changed
                [self.tableView reloadData];
                
@@ -122,7 +133,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.movies.count; //20 cells
+    return self.filteredMovies.count;
 }
 
 // it is a UITableView set up
@@ -136,7 +147,7 @@
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
     // make right movie associates with right row
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredMovies[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
     
@@ -157,6 +168,28 @@
 }
 
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSLog(@"HERE");
+    if (searchText.length != 0) {
+        
+//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
+//            return [evaluatedObject containsString:searchText];
+//        }];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@)", searchText];
+        self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
+        
+        NSLog(@"%@", self.filteredMovies);
+        
+    }
+    else {
+        self.filteredMovies = self.movies;
+    }
+    
+    [self.tableView reloadData];
+ 
+}
+
+
 //a lifecycle method
 #pragma mark - Navigation
 
@@ -167,6 +200,8 @@
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
     NSDictionary *movie = self.movies[indexPath.row]; //grab the movie
+    
+    
     
     DetailsViewController *detailsViewController = [segue destinationViewController];
     
