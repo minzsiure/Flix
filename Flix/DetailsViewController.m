@@ -8,6 +8,7 @@
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import <QuartzCore/QuartzCore.h>
+#import "trailerViewViewController.h"
 
 @interface DetailsViewController ()
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 
 @end
 
@@ -54,14 +56,17 @@
     [self.dateLabel sizeToFit];
 }
 
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
+//
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//     Get the new view controller using [segue destinationViewController].
+//     Pass the selected object to the new view controller.
+    NSNumber *movieID = self.movie[@"id"];
+    trailerViewViewController *trailerViewController = [segue destinationViewController];
+    trailerViewController.movieID = movieID;
 }
-*/
+
 
 @end
