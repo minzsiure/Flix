@@ -9,6 +9,7 @@
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 // this class implements this protocal, meaning i wil implement methods defined in <___>
 @interface MoviesViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 
 // create a property. it does both setter and getter in java
@@ -163,6 +165,18 @@
     
     // cell.textLabel.text = [NSString stringWithFormat:@"row: %d, section %d", indexPath.row, indexPath.section];
     // cell.textLabel.text = movie[@"title"];
+    cell.posterView.layer.cornerRadius = 20;
+    cell.posterView.clipsToBounds = YES;
+    
+    cell.shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
+    cell.shadowView.layer.shadowOffset = CGSizeMake(5, 3);
+    cell.shadowView.layer.shadowOpacity = 0.75;
+    cell.shadowView.layer.cornerRadius = 20;
+    cell.shadowView.layer.shadowRadius = 5;
+    cell.shadowView.clipsToBounds = NO;
+    
+    
+
     
     return cell;
 }
