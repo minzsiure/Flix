@@ -22,15 +22,10 @@ The following **optional** features might be implemented:
 - [ ] User can search for a movie.
 - [ ] Customize the selection effect of the cell.
 
-- [ ] All images fade in as they are loading.
-- [ ] User can view the large movie poster by tapping on a cell.
-- [ ] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
-- [ ] Customize the navigation bar.
-- [ ] Customize the UI.
-
 The following **additional** features are implemented:
 
 - [ ] User can play movie trailer on the detail screen.
+- [ ] User can view movie rating on the front page.
 
 
 ## Video Walkthrough
