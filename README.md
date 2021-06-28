@@ -32,7 +32,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/XEZYIcN.gif' title='Video Walkthrough' width='300' alt='Video Walkthrough' />
+<img src='https://github.com/minzsiure/Flix/blob/main/flix_small.gif?raw=true' title='Video Walkthrough' width='300' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
